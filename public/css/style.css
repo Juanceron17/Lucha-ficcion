@@ -1,0 +1,70 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0; 
+} 
+#navbar{
+    background-color: #d95054;
+    padding-bottom: 1px;
+    padding-top: 5px;
+}
+
+a{
+    color: whitesmoke;
+}
+
+h2{
+    color: whitesmoke;
+    padding-top: 10px;
+}
+p{
+   margin-bottom: 0rem;
+   padding-top: 6px;
+   color: whitesmoke;
+   
+}
+
+#logo1{
+    display: inline-block;
+    padding-right: 10px;
+}
+#logo2{
+    display: inline-block;
+    padding-left: 10px;
+}
+
+#banner{
+    height: 525px;
+    background-color: #C98386;
+}
+
+#middleColum{
+   background: linear-gradient( 180.07deg, #f7ce8f, 82.49%, rgba(249, 183, 41) 100.97% );
+   background-image: url(/img/icons/backgroundPapiro.jpg);
+}     
+    
+
+#portadaLibro{
+    height: 325px;
+    width: 250px;
+    margin-top:45px;
+    margin-bottom:35px;
+}
+
+#inventory{
+    height: 210px;
+}
+#mapa{
+    width: 300px;
+}
+label{
+    color: whitesmoke;
+}
+
+#footer {
+    margin-bottom: 0px;
+    height: 38px;
+    background-color: #d95054;
+   
+}
