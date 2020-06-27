@@ -126,7 +126,8 @@
         "acciones":[
             {
             "pregunta": "176",
-            "destino": 176
+            "destino": 176,
+            "idEnemigo": 1
             }
         ]
     },
@@ -190,7 +191,8 @@
         "acciones":[
             {
             "pregunta": "217",
-            "destino": 217
+            "destino": 217,
+            "idEnemigo":2
             }
         ]
     },
@@ -3505,17 +3507,8 @@
         "acciones":[
             {
             "pregunta": "Combate",
-            "destino": 286.1
-            }
-        ]
-    },
-    { 
-        "id": 286.1,
-        "parrafo":"<p>\r\n    Transfigurante\r\n<\/p>\r\n<p>\r\n    Destreza: 10\r\n</p>\r\n<div><p>\r\n    Resistencia: 10</p>\r\n<\/div>\r\n<div>\r\n    <br\/>\r\n<\/div>\r\n<div>\r\n<p>    Si vences pasa a la 373</p>\r\n<\/div>",
-        "acciones":[
-            {
-            "pregunta": "373",
-            "destino": 373
+            "destino": 373,
+            "idEnemigo": 0
             }
         ]
     },

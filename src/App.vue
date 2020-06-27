@@ -53,39 +53,44 @@ Tambien existen combates contra varios enemigos a la vez a los que haras frente 
                 <div class="form-group">
                     <form>
                         <label for="name">Nombre</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" v-model="nombre">
                         <div class="row">
                             <div class=" col-md col-auto-xs">
-                                <label for="name">Destreza</label>
-                                <input type="number" class="form-control">
+                                <label id="des" for="name">Destreza</label>
+                                <input type="number"class="form-control" v-model="destreza" disabled>
                             </div>
                             <div class="col-md col-auto-xs">
                                 <label for="name">Resistencia</label>
-                                <input type="number" class="form-control">
+                                <input type="number" class="form-control" v-model="resistencia" disabled>
                             </div>
                             <div class="col-md col-auto-xs">
                                 <label for="name">Suerte</label>
-                                <input type="number" class="form-control">
+                                <input type="number" class="form-control" v-model="suerte" disabled>
                             </div>
                         </div>
                         <label for="exampleFormControlTextarea1">Inventario</label>
                         <textarea id="inventory" class="form-control overflow-auto" rows="3"></textarea>
                         <label for="name">Oro</label>
-                        <input type="number" class="form-control">
+                        <input type="number" class="form-control" v-model="oro">
                     </form>
                 </div>
             </div>
             <div id="middleColumn" class="col-6 overflow-auto" v-if="parrafos.length > 0">
-                <!-- <a v-for="item in parrafos" :key="item.index">{{item}}</a> -->
-              
+         
                 <div class="container-fluid text-center">
                     <img v-if="parrafoActual.img" id="portadaLibro" class="img-fluid" :src="parrafoActual.img" alt="">
                 </div>
                 <div v-if="parrafoActual.parrafo" v-html="parrafoActual.parrafo">
                 </div>
+        
                 <div class="container text-center" v-if="parrafoActual.acciones">
                     <button v-for="(item, index) in parrafoActual.acciones" :key="index" v-on:click="irAPagina(item.destino)"  type="button" id="boton" class="btn btn-outline-light">{{item.pregunta}}</button>
                 </div>
+               <div>
+               </div>
+              <div class="container text-center" v-if="!personajeCreado">
+                    <button  v-on:click="tirarDados()"  type="button" id="boton" class="btn btn-outline-light">Tirar dados</button>
+                </div> 
             </div>
             <div id="actions">
                   <!-- <a v-for="item in json.acciones" @click="cargar(item.destino)">{{item.pregunta}}</a> -->             </div>
@@ -105,14 +110,22 @@ Tambien existen combates contra varios enemigos a la vez a los que haras frente 
   </template>
   <script>
       import aventura from './assets/static/parrafos.json'
-
+      import enemigos from './assets/static/enemy.json'
+      import personaje from './assets/static/personaje.json'
       export default{
           name: "app",
           data(){
               
               return{
                 parrafos: [],
-                pagina: 0
+                personaje: [],
+                pagina: 0,
+                nombre:'',
+                destreza:"",
+                resistencia: "",
+                suerte: '',
+                oro: 30,
+                personajeCreado: false
               }
           },
           computed: {
@@ -122,32 +135,96 @@ Tambien existen combates contra varios enemigos a la vez a los que haras frente 
                   }
                   return this.parrafos[this.pagina]
               }
+              
           },
           methods: {
                  irAPagina(paginaDestinoId){
-                     //1. crear 2 tipos de acciones (batalla e ir a página) (puedes crear una propiedad que sea "tipo" con valor "batalla" o "destino")
-                     //2. distinguir entre una y otra en este metodo
-                    console.info("Vamos a la página "+paginaDestino)
-                    //3. Si es de tipo destino, ejecutar las siguientes lineas
-                    //4. si es de tipo batalla, simular la batalla (tirada de dados y mandar donde corresponda)
-                    let paginaDestino = this.parrafos.findIndex(item => item.id === paginaDestinoId)
+                     if(!this.personajeCreado) {
+                        alert('Hay que crear el personaje');
+                     } else if(this.personajeCreado) {
 
+                     
+                   
+                    let paginaDestino = this.parrafos.findIndex(item =>  item.id === paginaDestinoId)
+                    let accion = this.parrafos[paginaDestino].acciones;
+                    console.log("accion ---> ", accion);
                     if(paginaDestino !== -1){
                         this.pagina = paginaDestino
                     }
 
-                    //mostrar error o mandar a la página principal
+                    if(accion[0].pregunta === 'Combate') {
+                        console.log('ESTO ES UN COMBATE');
+                        let idEnemigo = accion[0].idEnemigo;
+                        this.combate(enemigos[idEnemigo], personaje)
+                    }
+
+
+                  
+                    }
                 },
-                combate(combateDestinoId){
-                    console.info("vamos a la batalla"+ combateDestino)
-                    let combateDestino = this.parrafos.findIndex(item => item.id === combateDestinoId)
+                
+                tirarDados(){
+                    if(this.nombre === '') {
+                        alert('Introduce el nombre para tirar los dados');
+                    } else {
+                        this.resistencia = (Math.floor((Math.random() * 12) + 1) + 12);
+                        this.destreza = (Math.floor((Math.random() * 6) + 1) + 6);
+                        this.suerte = (Math.floor((Math.random() * 6) + 1) + 6);
+                        this.personajeCreado = true;
+
+
+                        personaje.nombre = this.nombre;
+                        personaje.destreza = this.destreza;
+                        personaje.resistencia = this.resistencia;
+                        personaje.suerte = this.suerte;
+                        personaje.oro = this.oro;
+
+            
+                    }
+
+                }, 
+
+                combate(enemigo, personaje) {
+
+                    console.log("personaje.resistencia ---> ", personaje);
+                     console.log("enemigo.resistencia ---> ", enemigo);
+
+                    if(personaje.resistencia > 0 && enemigo.resistencia > 0) {
+                     // AQUI SIGUE EL COMBATE
+                    this.restarVida(enemigo, personaje)
+               
+                    } else if (enemigo.resistencia <= 0){
+                        //GANAS EL COMBATE
+                        alert('Has ganado el combate')
+                        this.resistencia = personaje.resistencia;
+                        
+                    } else if(personaje.resistencia <= 0){
+                    //PIERDES EL COMBATE
+                    alert('Has perdido el combate')
+                    }
+                },
+
+
+                restarVida(enemigo, personaje) {
+                    let fuerzaJugador = (Math.floor((Math.random() * 6) + 1) + personaje.destreza);
+                    let fuerzaEnemigo = (Math.floor((Math.random() * 6) + 1) + enemigo.destreza);
+
+                    if(fuerzaJugador > fuerzaEnemigo) {
+                        enemigo.resistencia = enemigo.resistencia - 2;
+                        this.combate(enemigo, personaje);
+                    } else if (fuerzaEnemigo > fuerzaJugador) {
+                        personaje.resistencia = personaje.resistencia - 2;
+                        this.combate(enemigo, personaje);
+                    } else if(fuerzaEnemigo = fuerzaJugador) {
+                    this.combate(enemigo, personaje);
+                    }
                 }
             
           },
         mounted(){
-            console.info(aventura)
+            console.info(enemigos)
             this.parrafos=aventura
-            
+         
         }
       }
       
