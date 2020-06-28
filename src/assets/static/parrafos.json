@@ -1411,8 +1411,9 @@
         "parrafo":"<p dir=\"ltr\">\r\n    Al fin, el camino abandona los \u00E1rboles y desemboca en una vasta llanura.\r\n    M\u00E1s all\u00E1 ves que el terreno asciende por unas peque\u00F1as colinas. Las altas\r\n    hierbas que crecen a ambos lados del sendero, hasta la altura de la\r\n    cintura, se mecen suavemente en la tibia brisa. Reina una paz absoluta y\r\n    los peligros que acechan parecen carecer de importancia. Te hayas\r\n    disfrutando de tu paseo cuando, de pronto, un chillido y a continuaci\u00F3n un\r\n    gru\u00F1ido a la derecha del camino, rompen el silencio. Entonces ves como por\r\n    entre la hierba se abre un sendero y una bestia invisible avanza\r\n    r\u00E1pidamente hacia ti. Desenvainas la espada dispuesto a defenderte. Un gran\r\n    animal de color marr\u00F3n, con el aspecto de un cerdo, sale al camino unos\r\n    metros delante de ti y se detiene. De su hocico chato y corto sobresalen\r\n    dos largos colmillos y el vaho que desprende su cuerpo sudoroso se eleva en\r\n    el aire. Sus ojillos te miran antes de agachar la cabeza para embestirte.\r\n    Debes luchar con este JABAL\u00CD.\r\n<\/p>\r\n<br\/>\r\n<p dir=\"ltr\">\r\n    DESTREZA RESISTENCIA\r\n<\/p>\r\n<p dir=\"ltr\">\r\n    JABAL\u00CD 6 5\r\n<\/p>\r\n<p dir=\"ltr\">\r\n    Si le vences, pasa al 174.\r\n<\/p>",
         "acciones":[
             {
-            "pregunta": "174",
-            "destino": 174
+                "pregunta": "Has ganado",
+                "destino": 174,
+                "idEnemigo": 1
             }
         ]
     },
@@ -3506,7 +3507,7 @@
         "parrafo":"<p dir=\"ltr\">\r\n    Al levantar la espada para descargar tu primer golpe, el ser comienza a\r\n    metamorfosearse. Se vuelve m\u00E1s alto y de color verde. En su espalda aparece\r\n    un largo rabo espinoso, sus brazos se hacen m\u00E1s gruesos y en sus manos\r\n    crecen afiladas garras. Su rostro se distorsiona convirti\u00E9ndose en el de un\r\n    reptil de ojos rojos y enorme boca erizada de docenas de dientes afilados\r\n    como cuchillas. No es un Gnomo, sino un TRANSFIGURANTE, y habr\u00E1s de luchar\r\n    con \u00E9l.\r\n<\/p>\r\n<p dir=\"ltr\">\r\n    DESTREZA RESISTENCIA\r\n<\/p>\r\n<p dir=\"ltr\">\r\n    TRANSFIGURANTE 10 10\r\n<\/p>\r\n<p dir=\"ltr\">\r\n    Si vences, pasa al 373.\r\n<\/p>\r\n",
         "acciones":[
             {
-            "pregunta": "Combate",
+            "pregunta": "Has ganado",
             "destino": 373,
             "idEnemigo": 0
             }
